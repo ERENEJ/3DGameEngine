@@ -1,0 +1,5 @@
+﻿  Window.cpp
+  main.cpp
+  Generating Code...
+F:\Projects\DirectXSeniorProject\SeniorProject\SeniorProject\Window.cpp(39): warning C4715: 'WndProc': not all control paths return a value
+  SeniorProject.vcxproj -> F:\Projects\DirectXSeniorProject\SeniorProject\x64\Debug\SeniorProject.exe
