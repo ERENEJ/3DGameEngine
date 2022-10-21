@@ -17,7 +17,7 @@ int main()
 	}
 	else
 	{
-		std::cout << "no init for AppWindow \n";
+		std::cout << "init failed for AppWindow \n";
 	}
 	return 0;
 }
