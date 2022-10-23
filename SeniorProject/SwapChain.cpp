@@ -27,6 +27,21 @@ bool SwapChain::init(HWND hwnd, UINT width, UINT height)
 		return false;
 	}
 
+	ID3D11Texture2D* buffer = NULL;
+	hresult = m_swap_chain->GetBuffer(0, _uuidof(ID3D11Texture2D), (void**)&buffer);
+
+	if (FAILED(hresult))
+	{
+		return false;
+	}
+	hresult = device->CreateRenderTargetView(buffer, NULL, &m_render_target_view);
+	buffer->Release();
+
+	if (FAILED(hresult))
+	{
+		return false;
+	}
+
 
 	return true;
 }
@@ -38,4 +53,11 @@ bool SwapChain::release()
 	delete this;
 	return true;
 
+}
+
+bool SwapChain::present(bool vsync)
+{
+	m_swap_chain->Present(vsync, NULL);
+
+	return true;
 }
