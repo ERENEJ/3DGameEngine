@@ -1,2 +1,4 @@
-﻿  GraphicsEngine.cpp
+﻿  SwapChain.cpp
+  VertexShader.cpp
+  Generating Code...
   SeniorProject.vcxproj -> F:\Projects\DirectXSeniorProject\SeniorProject\x64\Debug\SeniorProject.exe
