@@ -1,4 +1,4 @@
-﻿  SwapChain.cpp
-  VertexShader.cpp
-  Generating Code...
+﻿  DeviceContext.cpp
+F:\Projects\DirectXSeniorProject\SeniorProject\SeniorProject\DeviceContext.cpp(25,19): warning C4244: '=': conversion from 'UINT' to 'FLOAT', possible loss of data
+F:\Projects\DirectXSeniorProject\SeniorProject\SeniorProject\DeviceContext.cpp(26,20): warning C4244: '=': conversion from 'UINT' to 'FLOAT', possible loss of data
   SeniorProject.vcxproj -> F:\Projects\DirectXSeniorProject\SeniorProject\x64\Debug\SeniorProject.exe
