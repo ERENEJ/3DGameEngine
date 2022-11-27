@@ -38,6 +38,9 @@
     <Filter Include="GameEngine\GraphicsEngine\IndexBuffer">
       <UniqueIdentifier>{c322bb80-f46b-4156-9315-e852b9d0c301}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameEngine\InputSystem">
+      <UniqueIdentifier>{29f1bfd9-257b-4725-b23b-24dd5dc6d3dd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -72,6 +75,9 @@
     </ClCompile>
     <ClCompile Include="IndexBuffer.cpp">
       <Filter>GameEngine\GraphicsEngine\IndexBuffer</Filter>
+    </ClCompile>
+    <ClCompile Include="InputSystem.cpp">
+      <Filter>GameEngine\InputSystem</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -110,6 +116,15 @@
     </ClInclude>
     <ClInclude Include="IndexBuffer.h">
       <Filter>GameEngine\GraphicsEngine\IndexBuffer</Filter>
+    </ClInclude>
+    <ClInclude Include="InputSystem.h">
+      <Filter>GameEngine\InputSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="InputListener.h">
+      <Filter>GameEngine\InputSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="Point.h">
+      <Filter>GameEngine\Math</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

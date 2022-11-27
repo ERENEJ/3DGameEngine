@@ -18,10 +18,31 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wparam, LPARAM lparam)
 				window->onCreate();
 				break;
 		}
+
+		case WM_SETFOCUS:
+		{
+			//events will be fired when window get focus
+				// TODO this part of the code taken from the comment section  from the video
+			Window* window = (Window*)GetWindowLongPtr(hwnd, GWLP_USERDATA);
+
+			window->onFocus();
+			break;
+		}
+
+		case WM_KILLFOCUS:
+		{
+			//events will be fired when window lost focus
+				// TODO this part of the code taken from the comment section  from the video
+			Window* window = (Window*)GetWindowLongPtr(hwnd, GWLP_USERDATA);
+
+			window->onKillFocus();
+			break;
+		}
+
 		case WM_DESTROY:
 		{
 			//events will be fired when window is destroyed
-				// TODO this part of the code taken from the comment section as improvment bot from the video
+				// TODO this part of the code taken from the comment section from the video
 			Window* window = (Window*)GetWindowLongPtr(hwnd, GWLP_USERDATA);
 
 			window->onDestroy();
@@ -142,4 +163,14 @@ void Window::onUpdate()
 void Window::onDestroy()
 {
 	m_is_run = false;
+}
+
+void Window::onFocus()
+{
+
+}
+
+void Window::onKillFocus()
+{
+
 }

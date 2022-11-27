@@ -2,6 +2,7 @@
 #include <Windows.h>
 #include "Vector3D.h"
 #include "Matrix4x4.h"
+#include "InputSystem.h"
 
 struct vertex
 {
@@ -40,22 +41,20 @@ void AppWindow::updateQuadPosition()
 	m_delta_scale += m_delta_time / 0.9f;
 
 	//cc.m_world.setScale(Vector3D::lerp(Vector3D(0.5, 0.5, 0), Vector3D(1.0f, 1.0f, 0), (sin(m_delta_scale) + 1.0f) / 2.0f));
-
 	//temp.setTranslation(Vector3D::lerp(Vector3D(-1.5f, -1.5f, 0), Vector3D(1.5f, 1.5f, 0), m_delta_pos));
-
 	//cc.m_world *= temp;
 
-	cc.m_world.setScale(Vector3D(1, 1, 1));
+	cc.m_world.setScale(Vector3D(m_scale_cube, m_scale_cube, m_scale_cube));
 	temp.setIdentity();
-	temp.setRotationZ(m_delta_scale);
+	temp.setRotationZ(0.0f);
 	cc.m_world *= temp;
 
 	temp.setIdentity();
-	temp.setRotationX(m_delta_scale);
+	temp.setRotationX(m_rot_x);
 	cc.m_world *= temp;
 
 	temp.setIdentity();
-	temp.setRotationY(m_delta_scale);
+	temp.setRotationY(m_rot_y);
 	cc.m_world *= temp;
 
 
@@ -80,6 +79,9 @@ AppWindow::~AppWindow()
 void AppWindow::onCreate()
 {
 	Window::onCreate();
+
+	InputSystem::get()->addListener(this);
+
 	GraphicsEngine::get()->init();
 	m_swap_chain = GraphicsEngine::get()->createSwapChain();
 
@@ -135,9 +137,6 @@ void AppWindow::onCreate()
 
 	m_ib->load(index_list, size_index_list);
 
-
-
-
 	void* shader_byte_code = nullptr;
 	size_t size_shader = 0;
 	GraphicsEngine::get()->compileVertexShader(L"VertexShader.hlsl", "vsmain", &shader_byte_code, &size_shader);
@@ -163,6 +162,10 @@ void AppWindow::onCreate()
 void AppWindow::onUpdate()
 {
 	Window::onUpdate();
+
+	InputSystem::get()->update();
+
+
 	//CLEAR THE RENDER TARGET 
 	GraphicsEngine::get()->getImmediateDeviceContext()->clearRenderTargetColor(this->m_swap_chain,
 		0, 0.3f, 0.4f, 1);
@@ -213,4 +216,83 @@ void AppWindow::onDestroy()
 	m_vs->release();
 	m_ps->release();
 	GraphicsEngine::get()->release();
+}
+
+void AppWindow::onKeyDown(int key)
+{
+	
+	if (key == 'W')
+	{
+		m_rot_x -= 3.707f * m_delta_time;
+	}
+	else if (key == 'S')
+	{
+		m_rot_x += 3.707f * m_delta_time;
+	}
+	else if (key == 'A')
+	{
+		m_rot_y += 3.707f * m_delta_time;
+	}
+	else if (key == 'D')
+	{
+		m_rot_y -= 3.707f * m_delta_time;
+	}
+	
+}
+void AppWindow::onMouseMove(const Point& delta_mouse_pos)
+{
+	m_rot_x -= delta_mouse_pos.m_y * m_delta_time;
+	m_rot_y -= delta_mouse_pos.m_x * m_delta_time;
+}
+void AppWindow::onKeyUp(int key)
+{	
+	/*
+	if (key == 'W')
+	{
+		m_rot_x -= 3.707f * m_delta_time;
+	}
+	else if (key == 'S')
+	{
+		m_rot_x += 3.707f * m_delta_time;
+	}
+	else if (key == 'A')
+	{
+		m_rot_y += 3.707f * m_delta_time;
+	}
+	else if (key == 'D')
+	{
+		m_rot_y -= 3.707f * m_delta_time;
+	}
+	*/
+
+}
+
+void AppWindow::onFocus()
+{
+	InputSystem::get()->addListener(this);
+}
+
+void AppWindow::onKillFocus()
+{
+	InputSystem::get()->removeListener(this);
+}
+
+void AppWindow::onLeftMouseDown(const Point& mouse_pos)
+{
+	m_scale_cube = 0.5f;
+}
+
+void AppWindow::onLeftMouseUp(const Point& mouse_pos)
+{
+	m_scale_cube = 1.0f;
+}
+
+void AppWindow::onRightMouseDown(const Point& mouse_pos)
+{
+	m_scale_cube = 2.0f;
+}
+
+void AppWindow::onRightMouseUp(const Point& mouse_pos)
+{
+	m_scale_cube = 1.0f;
 }
