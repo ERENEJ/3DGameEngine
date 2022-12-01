@@ -23,7 +23,7 @@ void InputSystem::update()
 		while (it != m_map_listeners.end())
 		{
 
-			it->second->onMouseMove(Point(current_mouse_pos.x - m_old_mouse_pos.m_x, current_mouse_pos.y - m_old_mouse_pos.m_y));
+			it->second->onMouseMove(Point(current_mouse_pos.x , current_mouse_pos.y ));
 			++it;
 		}
 
@@ -102,6 +102,16 @@ void InputSystem::update()
 	}
 }
 
+void InputSystem::setCursorPosition(const Point& pos)
+{
+	::SetCursorPos(pos.m_x, pos.m_y);
+}
+
+void InputSystem::showCursor(bool show)
+{
+	::ShowCursor(show);
+}
+
 void InputSystem::addListener(InputListener* listener)
 {
 	m_map_listeners.insert(std::make_pair<InputListener*, InputListener*>
@@ -117,6 +127,7 @@ void InputSystem::removeListener(InputListener* listener)
 		m_map_listeners.erase(it);
 	}
 }
+
 
 InputSystem* InputSystem::get()
 {
