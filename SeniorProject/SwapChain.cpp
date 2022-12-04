@@ -1,10 +1,11 @@
 #include "SwapChain.h"
-#include "GraphicsEngine.h"
+#include "RenderSystem.h"
+#include <exception>
 
-bool SwapChain::init(HWND hwnd, UINT width, UINT height)
+SwapChain::SwapChain(RenderSystem* system, HWND hwnd, UINT width, UINT height):m_system(system)
 {
 
-	ID3D11Device* device = GraphicsEngine::get()->m_d3d_device;
+	ID3D11Device* device = m_system->m_d3d_device;
 
 	DXGI_SWAP_CHAIN_DESC desc;
 	ZeroMemory(&desc, sizeof(desc));
@@ -21,10 +22,10 @@ bool SwapChain::init(HWND hwnd, UINT width, UINT height)
 	desc.Windowed = TRUE;
 
 
-	HRESULT hresult= GraphicsEngine::get()->m_dxgi_factory->CreateSwapChain(device, &desc, &m_swap_chain);
-	if(FAILED(hresult))
+	HRESULT hresult = m_system->m_dxgi_factory->CreateSwapChain(device, &desc, &m_swap_chain);
+	if (FAILED(hresult))
 	{
-		return false;
+		throw std::exception(" SwapChain m_system->m_dxgi_factory->CreateSwapChain not created successfully");
 	}
 
 	ID3D11Texture2D* buffer = NULL;
@@ -32,28 +33,25 @@ bool SwapChain::init(HWND hwnd, UINT width, UINT height)
 
 	if (FAILED(hresult))
 	{
-		return false;
+		throw std::exception(" SwapChain m_swap_chain->GetBuffer not created successfully");
 	}
 	hresult = device->CreateRenderTargetView(buffer, NULL, &m_render_target_view);
 	buffer->Release();
 
 	if (FAILED(hresult))
 	{
-		return false;
+		throw std::exception(" SwapChain CreateRenderTargetView not created successfully");
 	}
 
-
-	return true;
 }
 
-bool SwapChain::release()
-{
-
+SwapChain::~SwapChain()
+{	
+	m_render_target_view->Release();
 	m_swap_chain->Release();
-	delete this;
-	return true;
-
 }
+
+
 
 bool SwapChain::present(bool vsync)
 {

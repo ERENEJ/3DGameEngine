@@ -5,10 +5,12 @@
 #include "ConstantBuffer.h"
 #include "VertexShader.h"
 #include "PixelShader.h"
+#include <exception>
 
-DeviceContext::DeviceContext(ID3D11DeviceContext* device_context):m_device_context(device_context)
+DeviceContext::DeviceContext(ID3D11DeviceContext* device_context, RenderSystem* system) : m_system(system), m_device_context(device_context)
 {
 }
+
 
 void DeviceContext::clearRenderTargetColor(SwapChain* swap_chain, float red, float green, float blue, float alpha)
 {
@@ -92,10 +94,8 @@ void DeviceContext::drawTriangleStrip(UINT vertex_count, UINT start_vertex_index
 	m_device_context->Draw(vertex_count, start_vertex_index);
 }
 
-bool DeviceContext::release()
+
+DeviceContext::~DeviceContext()
 {
 	m_device_context->Release();
-
-	delete this;
-	return true;
 }
