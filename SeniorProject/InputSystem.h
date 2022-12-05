@@ -7,6 +7,10 @@
 class InputSystem
 {
 
+private:
+	InputSystem();
+	~InputSystem();
+
 public:
 	void update();
 	void addListener(InputListener* listener);
@@ -16,7 +20,8 @@ public:
 	void showCursor(bool show);
 
 	static InputSystem* get();
-
+	static void create();
+	static void release();
 private:
 
 	//std::unordered_set would be better for performance
@@ -25,5 +30,7 @@ private:
 	unsigned char m_old_keys_state[256] = {};
 	Point m_old_mouse_pos;
 	bool m_first_time = true;
+	static InputSystem* m_system;
+
 };
 

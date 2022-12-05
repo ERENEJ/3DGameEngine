@@ -1,7 +1,16 @@
 #include "InputSystem.h"
 #include "Window.h"
 
+InputSystem* InputSystem::m_system = nullptr;
 
+InputSystem::InputSystem()
+{
+}
+
+InputSystem::~InputSystem()
+{
+	InputSystem::m_system = nullptr;
+}
 
 void InputSystem::update()
 {
@@ -133,4 +142,16 @@ InputSystem* InputSystem::get()
 {
 	static InputSystem system;
 	return  &system;
+}
+
+void InputSystem::create()
+{
+	if (InputSystem::m_system)throw std::exception("Input System already created");
+	InputSystem::m_system = new InputSystem();
+}
+
+void InputSystem::release()
+{
+	if (!InputSystem::m_system) return;
+	delete InputSystem::m_system;
 }
