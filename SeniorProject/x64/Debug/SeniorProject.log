@@ -3,33 +3,6 @@ F:\Projects\DirectXSeniorProject\SeniorProject\SeniorProject\Matrix4x4.h(104,44)
 F:\Projects\DirectXSeniorProject\SeniorProject\SeniorProject\Matrix4x4.h(105,44): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
 F:\Projects\DirectXSeniorProject\SeniorProject\SeniorProject\Matrix4x4.h(106,44): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
 F:\Projects\DirectXSeniorProject\SeniorProject\SeniorProject\Matrix4x4.h(107,44): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-F:\Projects\DirectXSeniorProject\SeniorProject\SeniorProject\AppWindow.cpp(327,67): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-F:\Projects\DirectXSeniorProject\SeniorProject\SeniorProject\AppWindow.cpp(327,52): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-  ConstantBuffer.cpp
-  DeviceContext.cpp
-F:\Projects\DirectXSeniorProject\SeniorProject\SeniorProject\DeviceContext.cpp(28,19): warning C4244: '=': conversion from 'UINT' to 'FLOAT', possible loss of data
-F:\Projects\DirectXSeniorProject\SeniorProject\SeniorProject\DeviceContext.cpp(29,20): warning C4244: '=': conversion from 'UINT' to 'FLOAT', possible loss of data
-  GraphicsEngine.cpp
-  IndexBuffer.cpp
-  main.cpp
-F:\Projects\DirectXSeniorProject\SeniorProject\SeniorProject\Matrix4x4.h(104,44): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-F:\Projects\DirectXSeniorProject\SeniorProject\SeniorProject\Matrix4x4.h(105,44): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-F:\Projects\DirectXSeniorProject\SeniorProject\SeniorProject\Matrix4x4.h(106,44): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-F:\Projects\DirectXSeniorProject\SeniorProject\SeniorProject\Matrix4x4.h(107,44): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-  Mesh.cpp
-F:\Projects\DirectXSeniorProject\SeniorProject\SeniorProject\Mesh.cpp(21,52): error C4996: 'std::codecvt_utf8<wchar_t,1114111,(std::codecvt_mode)0>': warning STL4017: std::wbuffer_convert, std::wstring_convert, and the <codecvt> header (containing std::codecvt_mode, std::codecvt_utf8, std::codecvt_utf16, and std::codecvt_utf8_utf16) are deprecated in C++17. (The std::codecvt class template is NOT deprecated.) The C++ Standard doesn't provide equivalent non-deprecated functionality; consider using MultiByteToWideChar() and WideCharToMultiByte() from <Windows.h> instead. You can define _SILENCE_CXX17_CODECVT_HEADER_DEPRECATION_WARNING or _SILENCE_ALL_CXX17_DEPRECATION_WARNINGS to acknowledge that you have received this warning.
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.33.31629\include\codecvt(31,1): message : see declaration of 'std::codecvt_utf8'
-F:\Projects\DirectXSeniorProject\SeniorProject\SeniorProject\Mesh.cpp(21,31): error C4996: 'std::wstring_convert<std::codecvt_utf8<wchar_t,1114111,(std::codecvt_mode)0>,wchar_t,std::allocator<wchar_t>,std::allocator<char>>': warning STL4017: std::wbuffer_convert, std::wstring_convert, and the <codecvt> header (containing std::codecvt_mode, std::codecvt_utf8, std::codecvt_utf16, and std::codecvt_utf8_utf16) are deprecated in C++17. (The std::codecvt class template is NOT deprecated.) The C++ Standard doesn't provide equivalent non-deprecated functionality; consider using MultiByteToWideChar() and WideCharToMultiByte() from <Windows.h> instead. You can define _SILENCE_CXX17_CODECVT_HEADER_DEPRECATION_WARNING or _SILENCE_ALL_CXX17_DEPRECATION_WARNINGS to acknowledge that you have received this warning.
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.33.31629\include\xlocbuf(302,1): message : see declaration of 'std::wstring_convert'
-F:\Projects\DirectXSeniorProject\SeniorProject\SeniorProject\Mesh.cpp(21,76): error C4996: 'std::wstring_convert<std::codecvt_utf8<wchar_t,1114111,(std::codecvt_mode)0>,wchar_t,std::allocator<wchar_t>,std::allocator<char>>::to_bytes': warning STL4017: std::wbuffer_convert, std::wstring_convert, and the <codecvt> header (containing std::codecvt_mode, std::codecvt_utf8, std::codecvt_utf16, and std::codecvt_utf8_utf16) are deprecated in C++17. (The std::codecvt class template is NOT deprecated.) The C++ Standard doesn't provide equivalent non-deprecated functionality; consider using MultiByteToWideChar() and WideCharToMultiByte() from <Windows.h> instead. You can define _SILENCE_CXX17_CODECVT_HEADER_DEPRECATION_WARNING or _SILENCE_ALL_CXX17_DEPRECATION_WARNINGS to acknowledge that you have received this warning.
-  MeshManager.cpp
-  PixelShader.cpp
-  RenderSystem.cpp
-  ResourceManager.cpp
-  SwapChain.cpp
-  Texture.cpp
-F:\Projects\DirectXSeniorProject\SeniorProject\SeniorProject\Texture.cpp(18,64): warning C4267: '=': conversion from 'size_t' to 'UINT', possible loss of data
-  TextureManager.cpp
-  VertexBuffer.cpp
-  VertexShader.cpp
-  Generating Code...
+F:\Projects\DirectXSeniorProject\SeniorProject\SeniorProject\AppWindow.cpp(326,67): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+F:\Projects\DirectXSeniorProject\SeniorProject\SeniorProject\AppWindow.cpp(326,52): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  SeniorProject.vcxproj -> F:\Projects\DirectXSeniorProject\SeniorProject\x64\Debug\SeniorProject.exe
