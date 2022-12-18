@@ -1,7 +1,7 @@
 #pragma once
 
 #include <d3d11.h>
-#include "Prerequisistes.h"
+#include "Prerequisites.h"
 
 class IndexBuffer
 {
