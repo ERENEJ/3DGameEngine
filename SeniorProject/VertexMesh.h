@@ -20,10 +20,6 @@ public:
 	}
 
 public:
-	float m_x, m_y;
-
 	Vector3D m_position;
 	Vector2D m_texcoord;
-	
 };
-
