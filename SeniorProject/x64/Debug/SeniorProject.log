@@ -1,8 +1,3 @@
-﻿  AppWindow.cpp
-F:\Projects\DirectXSeniorProject\SeniorProject\SeniorProject\Matrix4x4.h(104,44): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-F:\Projects\DirectXSeniorProject\SeniorProject\SeniorProject\Matrix4x4.h(105,44): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-F:\Projects\DirectXSeniorProject\SeniorProject\SeniorProject\Matrix4x4.h(106,44): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-F:\Projects\DirectXSeniorProject\SeniorProject\SeniorProject\Matrix4x4.h(107,44): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-F:\Projects\DirectXSeniorProject\SeniorProject\SeniorProject\AppWindow.cpp(342,67): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-F:\Projects\DirectXSeniorProject\SeniorProject\SeniorProject\AppWindow.cpp(342,52): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+﻿  Texture.cpp
+F:\Projects\DirectXSeniorProject\SeniorProject\SeniorProject\Texture.cpp(18,64): warning C4267: '=': conversion from 'size_t' to 'UINT', possible loss of data
   SeniorProject.vcxproj -> F:\Projects\DirectXSeniorProject\SeniorProject\x64\Debug\SeniorProject.exe
