@@ -11,11 +11,17 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wparam, LPARAM lparam)
 	
 				break;
 		}
-
+		case WM_SIZE:
+		{	
+			//events will fired when window is resized
+			Window* window = (Window*)GetWindowLongPtr(hwnd, GWLP_USERDATA);
+			if (window)window->onSize();
+			break;
+		}
 		case WM_SETFOCUS:
 		{
 			//events will be fired when window get focus
-				// TODO this part of the code taken from the comment section  from the video
+		
 			Window* window = (Window*)GetWindowLongPtr(hwnd, GWLP_USERDATA);
 			if(window)window->onFocus();
 			
@@ -138,6 +144,15 @@ RECT Window::getClientWindowRect()
 	return rc;
 }
 
+RECT Window::getSizeScreen()
+{
+	RECT rc;
+
+	rc.right = ::GetSystemMetrics(SM_CXSCREEN);
+	rc.bottom = ::GetSystemMetrics(SM_CYSCREEN);
+
+	return rc;
+}
 
 void Window::onCreate()
 {
@@ -160,4 +175,8 @@ void Window::onFocus()
 void Window::onKillFocus()
 {
 
+}
+
+void Window::onSize()
+{
 }

@@ -16,6 +16,7 @@ class AppWindow : public Window, public InputListener
 public:
 	AppWindow();
 
+	void render();
 	void update();
 	void updateModel();
 	void updateCamera();
@@ -29,6 +30,7 @@ public:
 	virtual void onDestroy() override;
 	virtual void onFocus() override;
 	virtual void onKillFocus() override;
+	virtual void onSize() override;
 
 	// Inherited via InputListener
 	void onKeyDown(int key);
@@ -79,9 +81,12 @@ private:
 	float m_scale_cube = 1;
 	float m_forward = 0.0f;
 	float m_rightward = 0.0f;
+	
 	Matrix4x4 m_world_cam;
-
 	//normally constant buffer is meant to be used for cameras
 	Matrix4x4 m_view_cam;
 	Matrix4x4 m_proj_cam;
+
+	bool m_play_state = false;
+	bool m_fullscreen_state = false;
 };

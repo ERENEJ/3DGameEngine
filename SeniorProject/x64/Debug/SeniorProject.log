@@ -1,3 +1,22 @@
-﻿  Texture.cpp
-F:\Projects\DirectXSeniorProject\SeniorProject\SeniorProject\Texture.cpp(18,64): warning C4267: '=': conversion from 'size_t' to 'UINT', possible loss of data
+﻿  AppWindow.cpp
+F:\Projects\DirectXSeniorProject\SeniorProject\SeniorProject\Matrix4x4.h(104,44): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+F:\Projects\DirectXSeniorProject\SeniorProject\SeniorProject\Matrix4x4.h(105,44): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+F:\Projects\DirectXSeniorProject\SeniorProject\SeniorProject\Matrix4x4.h(106,44): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+F:\Projects\DirectXSeniorProject\SeniorProject\SeniorProject\Matrix4x4.h(107,44): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+F:\Projects\DirectXSeniorProject\SeniorProject\SeniorProject\AppWindow.cpp(378,67): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+F:\Projects\DirectXSeniorProject\SeniorProject\SeniorProject\AppWindow.cpp(378,52): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  DeviceContext.cpp
+F:\Projects\DirectXSeniorProject\SeniorProject\SeniorProject\DeviceContext.cpp(28,19): warning C4244: '=': conversion from 'UINT' to 'FLOAT', possible loss of data
+F:\Projects\DirectXSeniorProject\SeniorProject\SeniorProject\DeviceContext.cpp(29,20): warning C4244: '=': conversion from 'UINT' to 'FLOAT', possible loss of data
+  InputSystem.cpp
+  RenderSystem.cpp
+  SwapChain.cpp
+  Window.cpp
+  main.cpp
+F:\Projects\DirectXSeniorProject\SeniorProject\SeniorProject\Matrix4x4.h(104,44): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+F:\Projects\DirectXSeniorProject\SeniorProject\SeniorProject\Matrix4x4.h(105,44): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+F:\Projects\DirectXSeniorProject\SeniorProject\SeniorProject\Matrix4x4.h(106,44): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+F:\Projects\DirectXSeniorProject\SeniorProject\SeniorProject\Matrix4x4.h(107,44): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  Generating Code...
+F:\Projects\DirectXSeniorProject\SeniorProject\SeniorProject\Window.cpp(56): warning C4715: 'WndProc': not all control paths return a value
   SeniorProject.vcxproj -> F:\Projects\DirectXSeniorProject\SeniorProject\x64\Debug\SeniorProject.exe

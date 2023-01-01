@@ -19,17 +19,55 @@ SwapChain::SwapChain(RenderSystem* system, HWND hwnd, UINT width, UINT height):m
 	desc.OutputWindow = hwnd;
 	desc.SampleDesc.Count = 1;
 	desc.SampleDesc.Quality = 0;
+	desc.Flags = DXGI_SWAP_CHAIN_FLAG_ALLOW_MODE_SWITCH;
 	desc.Windowed = TRUE;
 
+	//Creating Swap chain
 
 	HRESULT hresult = m_system->m_dxgi_factory->CreateSwapChain(device, &desc, &m_swap_chain);
+
 	if (FAILED(hresult))
 	{
 		throw std::exception(" SwapChain m_system->m_dxgi_factory->CreateSwapChain not created successfully");
 	}
 
+	reloadBuffers(width, height);
+}
+
+SwapChain::~SwapChain()
+{	
+	m_render_target_view->Release();
+	m_swap_chain->Release();
+}
+
+void SwapChain::setFullScreen(bool fullscreen, unsigned int width, unsigned int height)
+{	
+	resize(width, height);
+	m_swap_chain->SetFullscreenState(fullscreen,nullptr);
+}
+
+void SwapChain::resize(unsigned int width, unsigned int height)
+{	
+	if (m_render_target_view)m_render_target_view->Release();
+	if (m_depth_stencil_view)m_depth_stencil_view->Release();
+
+	m_swap_chain->ResizeBuffers(1, width, height, DXGI_FORMAT_R8G8B8A8_UNORM, 0);
+	reloadBuffers(width, height);
+}
+
+bool SwapChain::present(bool vsync)
+{
+	m_swap_chain->Present(vsync, NULL);
+
+	return true;
+}
+
+void SwapChain::reloadBuffers(unsigned int width, unsigned int height)
+{
+	ID3D11Device* device = m_system->m_d3d_device;
+
 	ID3D11Texture2D* buffer = NULL;
-	hresult = m_swap_chain->GetBuffer(0, _uuidof(ID3D11Texture2D), (void**)&buffer);
+	HRESULT hresult = m_swap_chain->GetBuffer(0, _uuidof(ID3D11Texture2D), (void**)&buffer);
 
 	if (FAILED(hresult))
 	{
@@ -68,19 +106,4 @@ SwapChain::SwapChain(RenderSystem* system, HWND hwnd, UINT width, UINT height):m
 	{
 		throw std::exception(" SwapChain CreateDepthStencilView not created successfully");
 	}
-}
-
-SwapChain::~SwapChain()
-{	
-	m_render_target_view->Release();
-	m_swap_chain->Release();
-}
-
-
-
-bool SwapChain::present(bool vsync)
-{
-	m_swap_chain->Present(vsync, NULL);
-
-	return true;
 }

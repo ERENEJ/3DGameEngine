@@ -80,8 +80,10 @@ AppWindow::~AppWindow()
 void AppWindow::onCreate()
 {
 	Window::onCreate();
-
+	
 	InputSystem::get()->addListener(this);
+	
+	m_play_state = true;
 	InputSystem::get()->showCursor(false);
 
 	 m_wood_tex = GraphicsEngine::get()->getTextureManager()->createTextureFromFile(L"Assets\\Textures\\brick.png");
@@ -220,11 +222,8 @@ void AppWindow::updateSkyBox()
 	m_sky_cb->update(GraphicsEngine::get()->getRenderSystem()->getImmediateDeviceContext(), &cc);
 }
 
-void AppWindow::onUpdate()
+void AppWindow::render()
 {
-	Window::onUpdate();
-
-	InputSystem::get()->update();
 
 
 	//CLEAR THE RENDER TARGET 
@@ -252,6 +251,16 @@ void AppWindow::onUpdate()
 	m_new_delta = ::GetTickCount();
 
 	m_delta_time = (m_old_delta) ? ((m_new_delta - m_old_delta) / 1000.0f) : 0;
+}
+
+void AppWindow::onUpdate()
+{
+	Window::onUpdate();
+
+	InputSystem::get()->update();
+
+	this->render(); 
+
 }
 void AppWindow::updateCamera()
 {
@@ -322,6 +331,7 @@ void AppWindow::drawMesh(const MeshPtr& mesh, const VertexShaderPtr& vs, const P
 void AppWindow::onDestroy()
 {
 	Window::onDestroy();
+	m_swap_chain->setFullScreen(false, 1, 1);
 
 }
 
@@ -356,6 +366,8 @@ void AppWindow::onKeyDown(int key)
 }
 void AppWindow::onMouseMove(const Point& mouse_pos)
 {	
+	if (!m_play_state) return;
+
 	int width = (this->getClientWindowRect().right - this->getClientWindowRect().left);
 	int height = (this->getClientWindowRect().bottom - this->getClientWindowRect().top);
 
@@ -364,14 +376,29 @@ void AppWindow::onMouseMove(const Point& mouse_pos)
 
 
 	InputSystem::get()->setCursorPosition(Point(width / 2.0f, height / 2.0f));
-
+	
 	
 }
 void AppWindow::onKeyUp(int key)
 {	
-
 	m_forward = 0.0f;
 	m_rightward = 0.0f;
+
+	if (key == 'G')
+	{
+		m_play_state = (m_play_state) ? false : true;
+		InputSystem::get()->showCursor(!m_play_state);
+	}
+
+	else if (key == 'F')
+	{
+		m_fullscreen_state = (m_fullscreen_state) ? false : true;	
+		RECT size_screen = this->getSizeScreen();
+
+		m_swap_chain->setFullScreen(m_fullscreen_state, size_screen.right, size_screen.bottom);
+		
+	}
+	
 }
 
 void AppWindow::onFocus()
@@ -382,6 +409,13 @@ void AppWindow::onFocus()
 void AppWindow::onKillFocus()
 {
 	InputSystem::get()->removeListener(this);
+}
+
+void AppWindow::onSize()
+{
+	RECT rc = this->getClientWindowRect();
+	m_swap_chain->resize(rc.right, rc.bottom);
+	this->render();
 }
 
 void AppWindow::onLeftMouseDown(const Point& mouse_pos)
