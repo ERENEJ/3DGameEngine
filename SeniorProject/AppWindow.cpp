@@ -21,6 +21,7 @@ struct constant
 	Matrix4x4 m_proj;
 	Vector4D m_light_direction;
 	Vector4D m_camera_position;
+	float m_time = 0.0f;
 };
 
 
@@ -44,7 +45,7 @@ void AppWindow::updateModel()
 	m_light_rot_matrix.setRotationY(m_light_rot_y);
 
 	//45 degrees
-	m_light_rot_y += 0.707f * m_delta_time;
+	m_light_rot_y += 0.507f * m_delta_time;
 
 	//cc.m_world.setScale(Vector3D::lerp(Vector3D(0.5, 0.5, 0), Vector3D(1.0f, 1.0f, 0), (sin(m_delta_scale) + 1.0f) / 2.0f));
 	//temp.setTranslation(Vector3D::lerp(Vector3D(-1.5f, -1.5f, 0), Vector3D(1.5f, 1.5f, 0), m_delta_pos));
@@ -69,6 +70,7 @@ void AppWindow::updateModel()
 	cc.m_proj = m_proj_cam;
 	cc.m_camera_position = m_world_cam.getTranslation();
 	cc.m_light_direction = m_light_rot_matrix.getZDirection();
+	cc.m_time = m_time;
 
 	m_cb->update(GraphicsEngine::get()->getRenderSystem()->getImmediateDeviceContext(), &cc);
 }
@@ -86,10 +88,15 @@ void AppWindow::onCreate()
 	m_play_state = true;
 	InputSystem::get()->showCursor(false);
 
-	 m_wood_tex = GraphicsEngine::get()->getTextureManager()->createTextureFromFile(L"Assets\\Textures\\brick.png");
-	 m_sky_tex = GraphicsEngine::get()->getTextureManager()->createTextureFromFile(L"Assets\\Textures\\sky.jpg");
+	 m_earthcolor_tex = GraphicsEngine::get()->getTextureManager()->createTextureFromFile(L"Assets\\Textures\\earth_color.jpg");
+	 m_sky_tex = GraphicsEngine::get()->getTextureManager()->createTextureFromFile(L"Assets\\Textures\\stars_map.jpg");
 
-	 m_mesh = GraphicsEngine::get()->getMeshManager()->createMeshFromFile(L"Assets\\Meshes\\suzanne.obj");
+	 m_clouds_tex = GraphicsEngine::get()->getTextureManager()->createTextureFromFile(L"Assets\\Textures\\clouds.jpg");
+	 m_earth_night_tex = GraphicsEngine::get()->getTextureManager()->createTextureFromFile(L"Assets\\Textures\\earth_night.jpg");
+
+	 m_earth_spec_tex = GraphicsEngine::get()->getTextureManager()->createTextureFromFile(L"Assets\\Textures\\earth_spec.jpg");
+
+	 m_mesh = GraphicsEngine::get()->getMeshManager()->createMeshFromFile(L"Assets\\Meshes\\sphere_hq.obj");
 	 m_sky_mesh = GraphicsEngine::get()->getMeshManager()->createMeshFromFile(L"Assets\\Meshes\\sphere.obj");
 
 	RECT rc = this->getClientWindowRect();
@@ -207,6 +214,8 @@ void AppWindow::onCreate()
 	m_cb = GraphicsEngine::get()->getRenderSystem()->createConstantBuffer(&cc, sizeof(constant));
 	m_sky_cb = GraphicsEngine::get()->getRenderSystem()->createConstantBuffer(&cc, sizeof(constant));
 
+
+	m_world_cam.setTranslation(Vector3D(0, 0, -2));
 }
 
 void AppWindow::updateSkyBox()
@@ -238,12 +247,23 @@ void AppWindow::render()
 
 	//Render model
 	GraphicsEngine::get()->getRenderSystem()->setRasterizerState(false);
-	drawMesh(m_mesh, m_vs, m_ps, m_cb, m_wood_tex);
 
-	//Render sphere Skybox worked for same pixel shader variable
-	//result was 2 different texture wirh same variable as intended 
+	//Sending multiple textures for earth model
+	TexturePtr list_tex[4];
+	list_tex[0] = m_earthcolor_tex;
+	list_tex[1] = m_earth_spec_tex;
+	list_tex[2] = m_clouds_tex;
+	list_tex[3] = m_earth_night_tex;
+
+	drawMesh(m_mesh, m_vs, m_ps, m_cb, list_tex, 4);
+
+	//Render sphere Skybox worked for same pixel shader variable 
+	//result was 2 different texture wirt same variable as intended (like in the example above)
 	GraphicsEngine::get()->getRenderSystem()->setRasterizerState(true);
-	drawMesh(m_sky_mesh, m_vs, m_sky_ps, m_sky_cb, m_sky_tex);
+	
+	list_tex[0] = m_sky_tex;
+	
+	drawMesh(m_sky_mesh, m_vs, m_sky_ps, m_sky_cb, list_tex, 1);
 
 	m_swap_chain->present(true);
 
@@ -251,6 +271,8 @@ void AppWindow::render()
 	m_new_delta = ::GetTickCount();
 
 	m_delta_time = (m_old_delta) ? ((m_new_delta - m_old_delta) / 1000.0f) : 0;
+
+	m_time += m_delta_time;
 }
 
 void AppWindow::onUpdate()
@@ -302,7 +324,8 @@ void AppWindow::updateCamera()
 	m_proj_cam.setPerspectiveFovLH(1.57f, ((float)width / (float)height), 0.1f, 100.0f);
 }
 
-void AppWindow::drawMesh(const MeshPtr& mesh, const VertexShaderPtr& vs, const PixelShaderPtr& ps, const ConstantBufferPtr& cb, const TexturePtr& tex)
+void AppWindow::drawMesh(const MeshPtr& mesh, const VertexShaderPtr& vs, const PixelShaderPtr& ps,
+	const ConstantBufferPtr& cb, const TexturePtr* list_texture, unsigned int num_textures)
 {
 
 	GraphicsEngine::get()->getRenderSystem()->getImmediateDeviceContext()->SetConstantBuffer(vs, cb);
@@ -312,7 +335,7 @@ void AppWindow::drawMesh(const MeshPtr& mesh, const VertexShaderPtr& vs, const P
 	GraphicsEngine::get()->getRenderSystem()->getImmediateDeviceContext()->SetVertexShader(vs);
 	GraphicsEngine::get()->getRenderSystem()->getImmediateDeviceContext()->SetPixelShader(ps);
 
-	GraphicsEngine::get()->getRenderSystem()->getImmediateDeviceContext()->setTexture(ps, tex);
+	GraphicsEngine::get()->getRenderSystem()->getImmediateDeviceContext()->setTexture(ps, list_texture, num_textures);
 
 
 	//SET THE VERTICES OF THE TRIANGLE TO DRAW

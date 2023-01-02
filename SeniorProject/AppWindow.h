@@ -45,7 +45,7 @@ public:
 
 	// basic mesh drawing
 	void drawMesh(const MeshPtr& mesh, const VertexShaderPtr& vs, const PixelShaderPtr& ps, 
-		const ConstantBufferPtr& cb, const TexturePtr& tex);
+		const ConstantBufferPtr& cb, const TexturePtr* list_texture, unsigned int num_textures);
 
 private:
 	SwapChainPtr m_swap_chain;
@@ -57,8 +57,11 @@ private:
 	ConstantBufferPtr m_cb;
 	ConstantBufferPtr m_sky_cb;
 
-	TexturePtr m_wood_tex;
+	TexturePtr m_earthcolor_tex;
+	TexturePtr m_earth_spec_tex;
 	TexturePtr m_sky_tex;
+	TexturePtr m_clouds_tex;
+	TexturePtr m_earth_night_tex;
 
 
 	MeshPtr m_mesh;
@@ -67,7 +70,9 @@ private:
 private:
 	long m_old_delta;
 	long m_new_delta;
-	float m_delta_time;
+	float m_delta_time = 0.0f;
+
+	float m_time;
 
 	float m_delta_pos;
 	float m_delta_scale;
