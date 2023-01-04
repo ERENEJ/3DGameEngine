@@ -62,6 +62,7 @@ private:
 	TexturePtr m_sky_tex;
 	TexturePtr m_clouds_tex;
 	TexturePtr m_earth_night_tex;
+	TexturePtr m_wall_tex;
 
 
 	MeshPtr m_mesh;
@@ -73,6 +74,8 @@ private:
 	float m_delta_time = 0.0f;
 
 	float m_time;
+
+	float m_light_radius = 4.0f;
 
 	float m_delta_pos;
 	float m_delta_scale;

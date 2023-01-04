@@ -21,6 +21,8 @@ struct constant
 	Matrix4x4 m_proj;
 	Vector4D m_light_direction;
 	Vector4D m_camera_position;
+	Vector4D m_light_position = Vector4D(0, 1, 0, 0);
+	float m_light_radius = 4.0f;
 	float m_time = 0.0f;
 };
 
@@ -45,7 +47,7 @@ void AppWindow::updateModel()
 	m_light_rot_matrix.setRotationY(m_light_rot_y);
 
 	//45 degrees
-	m_light_rot_y += 0.507f * m_delta_time;
+	m_light_rot_y += 1.57f * m_delta_time;
 
 	//cc.m_world.setScale(Vector3D::lerp(Vector3D(0.5, 0.5, 0), Vector3D(1.0f, 1.0f, 0), (sin(m_delta_scale) + 1.0f) / 2.0f));
 	//temp.setTranslation(Vector3D::lerp(Vector3D(-1.5f, -1.5f, 0), Vector3D(1.5f, 1.5f, 0), m_delta_pos));
@@ -69,6 +71,13 @@ void AppWindow::updateModel()
 	cc.m_view = m_view_cam;
 	cc.m_proj = m_proj_cam;
 	cc.m_camera_position = m_world_cam.getTranslation();
+	
+	float dist_from_origin = 1.0f;
+
+	cc.m_light_position = Vector4D(cos(m_light_rot_y) * dist_from_origin, 1.0f, sin(m_light_rot_y) * dist_from_origin, 1.0f);
+
+	cc.m_light_radius = m_light_radius;
+
 	cc.m_light_direction = m_light_rot_matrix.getZDirection();
 	cc.m_time = m_time;
 
@@ -87,16 +96,17 @@ void AppWindow::onCreate()
 	
 	m_play_state = true;
 	InputSystem::get()->showCursor(false);
-
-	 m_earthcolor_tex = GraphicsEngine::get()->getTextureManager()->createTextureFromFile(L"Assets\\Textures\\earth_color.jpg");
-	 m_sky_tex = GraphicsEngine::get()->getTextureManager()->createTextureFromFile(L"Assets\\Textures\\stars_map.jpg");
-
+	
+	m_wall_tex = GraphicsEngine::get()->getTextureManager()->createTextureFromFile(L"Assets\\Textures\\wall.jpg");
+	/*
+	 m_earthcolor_tex = GraphicsEngine::get()->getTextureManager()->createTextureFromFile(L"Assets\\Textures\\earth_color.jpg");	 
 	 m_clouds_tex = GraphicsEngine::get()->getTextureManager()->createTextureFromFile(L"Assets\\Textures\\clouds.jpg");
 	 m_earth_night_tex = GraphicsEngine::get()->getTextureManager()->createTextureFromFile(L"Assets\\Textures\\earth_night.jpg");
-
 	 m_earth_spec_tex = GraphicsEngine::get()->getTextureManager()->createTextureFromFile(L"Assets\\Textures\\earth_spec.jpg");
+	  */
 
-	 m_mesh = GraphicsEngine::get()->getMeshManager()->createMeshFromFile(L"Assets\\Meshes\\sphere_hq.obj");
+	 m_sky_tex = GraphicsEngine::get()->getTextureManager()->createTextureFromFile(L"Assets\\Textures\\stars_map.jpg");
+	 m_mesh = GraphicsEngine::get()->getMeshManager()->createMeshFromFile(L"Assets\\Meshes\\scene.obj");
 	 m_sky_mesh = GraphicsEngine::get()->getMeshManager()->createMeshFromFile(L"Assets\\Meshes\\sphere.obj");
 
 	RECT rc = this->getClientWindowRect();
@@ -193,14 +203,14 @@ void AppWindow::onCreate()
 	void* shader_byte_code = nullptr;
 	size_t size_shader = 0;
 
-	GraphicsEngine::get()->getRenderSystem()->compileVertexShader(L"VertexShader.hlsl", "vsmain", &shader_byte_code, &size_shader);
+	GraphicsEngine::get()->getRenderSystem()->compileVertexShader(L"PointLightVertexShader.hlsl", "vsmain", &shader_byte_code, &size_shader);
 	m_vs = GraphicsEngine::get()->getRenderSystem()->createVertexShader(shader_byte_code, size_shader);
 	GraphicsEngine::get()->getRenderSystem()->releaseCompiledShader();
 	
 	//m_vb = GraphicsEngine::get()->getRenderSystem()->createVertexBuffer(vertex_list, sizeof(vertex), size_list, shader_byte_code, size_shader);
 
 
-	GraphicsEngine::get()->getRenderSystem()->compilePixelShader(L"PixelShader.hlsl", "psmain", &shader_byte_code, &size_shader);
+	GraphicsEngine::get()->getRenderSystem()->compilePixelShader(L"PointLightPixelShader.hlsl", "psmain", &shader_byte_code, &size_shader);
 	m_ps = GraphicsEngine::get()->getRenderSystem()->createPixelShader(shader_byte_code, size_shader);
 	GraphicsEngine::get()->getRenderSystem()->releaseCompiledShader();
 
@@ -248,6 +258,10 @@ void AppWindow::render()
 	//Render model
 	GraphicsEngine::get()->getRenderSystem()->setRasterizerState(false);
 
+	TexturePtr list_tex[1];
+	list_tex[0] = m_wall_tex;
+
+	/*
 	//Sending multiple textures for earth model
 	TexturePtr list_tex[4];
 	list_tex[0] = m_earthcolor_tex;
@@ -256,6 +270,9 @@ void AppWindow::render()
 	list_tex[3] = m_earth_night_tex;
 
 	drawMesh(m_mesh, m_vs, m_ps, m_cb, list_tex, 4);
+	*/
+
+	drawMesh(m_mesh, m_vs, m_ps, m_cb, list_tex, 1);
 
 	//Render sphere Skybox worked for same pixel shader variable 
 	//result was 2 different texture wirt same variable as intended (like in the example above)
@@ -384,6 +401,17 @@ void AppWindow::onKeyDown(int key)
 		m_rightward = +1.f;
 		//m_rightward = +1.f * m_delta_time;;
 		//m_rot_y -= 3.707f * m_delta_time;
+	}
+
+	else if (key == 'O')
+	{
+		m_light_radius -= 1.0f * m_delta_time;
+	}
+
+	else if (key == 'P')
+	{
+		m_light_radius += 1.0f * m_delta_time;
+	
 	}
 	
 }
