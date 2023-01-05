@@ -8,7 +8,6 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wparam, LPARAM lparam)
 	{
 		case WM_CREATE:
 		{
-	
 				break;
 		}
 		case WM_SIZE:

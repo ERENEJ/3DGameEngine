@@ -3,12 +3,6 @@ F:\Projects\DirectXSeniorProject\SeniorProject\SeniorProject\Matrix4x4.h(104,44)
 F:\Projects\DirectXSeniorProject\SeniorProject\SeniorProject\Matrix4x4.h(105,44): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
 F:\Projects\DirectXSeniorProject\SeniorProject\SeniorProject\Matrix4x4.h(106,44): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
 F:\Projects\DirectXSeniorProject\SeniorProject\SeniorProject\Matrix4x4.h(107,44): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-F:\Projects\DirectXSeniorProject\SeniorProject\SeniorProject\AppWindow.cpp(429,67): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-F:\Projects\DirectXSeniorProject\SeniorProject\SeniorProject\AppWindow.cpp(429,52): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-  main.cpp
-F:\Projects\DirectXSeniorProject\SeniorProject\SeniorProject\Matrix4x4.h(104,44): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-F:\Projects\DirectXSeniorProject\SeniorProject\SeniorProject\Matrix4x4.h(105,44): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-F:\Projects\DirectXSeniorProject\SeniorProject\SeniorProject\Matrix4x4.h(106,44): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-F:\Projects\DirectXSeniorProject\SeniorProject\SeniorProject\Matrix4x4.h(107,44): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-  Generating Code...
+F:\Projects\DirectXSeniorProject\SeniorProject\SeniorProject\AppWindow.cpp(431,67): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+F:\Projects\DirectXSeniorProject\SeniorProject\SeniorProject\AppWindow.cpp(431,52): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
   SeniorProject.vcxproj -> F:\Projects\DirectXSeniorProject\SeniorProject\x64\Debug\SeniorProject.exe

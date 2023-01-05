@@ -105,15 +105,18 @@ void AppWindow::onCreate()
 	 m_earth_spec_tex = GraphicsEngine::get()->getTextureManager()->createTextureFromFile(L"Assets\\Textures\\earth_spec.jpg");
 	  */
 
-	 m_sky_tex = GraphicsEngine::get()->getTextureManager()->createTextureFromFile(L"Assets\\Textures\\stars_map.jpg");
-	 m_mesh = GraphicsEngine::get()->getMeshManager()->createMeshFromFile(L"Assets\\Meshes\\scene.obj");
+	 m_sky_tex = GraphicsEngine::get()->getTextureManager()->createTextureFromFile(L"Assets\\Textures\\sky.jpg");
 	 m_sky_mesh = GraphicsEngine::get()->getMeshManager()->createMeshFromFile(L"Assets\\Meshes\\sphere.obj");
+
+	 m_mesh = GraphicsEngine::get()->getMeshManager()->createMeshFromFile(L"Assets\\Meshes\\scene.obj");
+	 
 
 	RECT rc = this->getClientWindowRect();
 	m_swap_chain = GraphicsEngine::get()->getRenderSystem()->createSwapChain(this->m_hwnd, rc.right - rc.left, rc.bottom - rc.top);
 
 	m_world_cam.setTranslation(Vector3D(0, 0, -1));
 	
+	/*
 	Vector3D position_list[] =
 	{
 
@@ -198,7 +201,7 @@ void AppWindow::onCreate()
 
 	UINT size_index_list = ARRAYSIZE(index_list);
 	m_ib = GraphicsEngine::get()->getRenderSystem()->createIndexBuffer(index_list, size_index_list);
-	
+	*/
 
 	void* shader_byte_code = nullptr;
 	size_t size_shader = 0;
@@ -278,8 +281,8 @@ void AppWindow::render()
 	//result was 2 different texture wirt same variable as intended (like in the example above)
 	GraphicsEngine::get()->getRenderSystem()->setRasterizerState(true);
 	
+	//sky related
 	list_tex[0] = m_sky_tex;
-	
 	drawMesh(m_sky_mesh, m_vs, m_sky_ps, m_sky_cb, list_tex, 1);
 
 	m_swap_chain->present(true);
@@ -344,27 +347,26 @@ void AppWindow::updateCamera()
 void AppWindow::drawMesh(const MeshPtr& mesh, const VertexShaderPtr& vs, const PixelShaderPtr& ps,
 	const ConstantBufferPtr& cb, const TexturePtr* list_texture, unsigned int num_textures)
 {
-
+	//set buffers
 	GraphicsEngine::get()->getRenderSystem()->getImmediateDeviceContext()->SetConstantBuffer(vs, cb);
 	GraphicsEngine::get()->getRenderSystem()->getImmediateDeviceContext()->SetConstantBuffer(ps, cb);
 
-	//SET DEFAULT SHADER IN THE GRAPHICS PIPELINE TO BE ABLE TO DRAW
+	//setting shaders 
 	GraphicsEngine::get()->getRenderSystem()->getImmediateDeviceContext()->SetVertexShader(vs);
 	GraphicsEngine::get()->getRenderSystem()->getImmediateDeviceContext()->SetPixelShader(ps);
 
+	//setting the texture
 	GraphicsEngine::get()->getRenderSystem()->getImmediateDeviceContext()->setTexture(ps, list_texture, num_textures);
 
-
-	//SET THE VERTICES OF THE TRIANGLE TO DRAW
+	//setting vertices of the object
 	GraphicsEngine::get()->getRenderSystem()->getImmediateDeviceContext()->setVertexBuffer(mesh->getVertexBuffer());
-	//	GraphicsEngine::get()->getRenderSystem()->getImmediateDeviceContext()->setVertexBuffer(m_vb);
 
-	//SET THE indicies OF THE TRIANGLE TO DRAW
+	// setting the indicies of the object
 	GraphicsEngine::get()->getRenderSystem()->getImmediateDeviceContext()->setIndexBuffer(mesh->getIndexBuffer());
-	//GraphicsEngine::get()->getRenderSystem()->getImmediateDeviceContext()->setIndexBuffer(m_ib);
 
-	// FINALLY DRAW THE TRIANGLE
-	GraphicsEngine::get()->getRenderSystem()->getImmediateDeviceContext()->drawIndexedTriangleList(mesh->getIndexBuffer()->getSizeIndexList(), 0, 0);
+	// draw the object 
+	GraphicsEngine::get()->getRenderSystem()->getImmediateDeviceContext()->drawIndexedTriangleList(
+		mesh->getIndexBuffer()->getSizeIndexList(), 0, 0);
 
 }
 

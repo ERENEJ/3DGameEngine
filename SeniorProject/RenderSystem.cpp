@@ -84,7 +84,8 @@ bool RenderSystem::compileVertexShader(const wchar_t* file_name, const char* ent
 	return true;
 }
 
-bool RenderSystem::compilePixelShader(const wchar_t* file_name, const char* entry_point_name, void** shader_byte_code, size_t* byte_code_size)
+bool RenderSystem::compilePixelShader(const wchar_t* file_name, const char* entry_point_name, 
+	void** shader_byte_code, size_t* byte_code_size)
 {
 	ID3DBlob* error_blob = nullptr;
 

@@ -21,7 +21,6 @@ Mesh::Mesh(const wchar_t* full_path): Resource(full_path)
 	//not works after c++17
 	//std::string inputfile = std::wstring_convert<std::codecvt_utf8<wchar_t>>().to_bytes(full_path);
 
-	
 	int size_needed = WideCharToMultiByte(CP_UTF8, 0, &full_path[0], wcslen(full_path), NULL, 0, NULL, NULL);
 	std::string inputfile(size_needed, 0);
 	//WideCharToMultiByte(CP_UTF8, 0, &full_path[0], wcslen(full_path), &inputfile[0], size_needed, NULL, NULL);
