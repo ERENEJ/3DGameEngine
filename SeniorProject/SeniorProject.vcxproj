@@ -24,6 +24,7 @@
     <ProjectGuid>{dcbad36d-6411-420e-aa71-6f71b9e1fdb1}</ProjectGuid>
     <RootNamespace>SeniorProject</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>DirectXEngineProject</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">

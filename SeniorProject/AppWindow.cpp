@@ -47,7 +47,7 @@ void AppWindow::updateModel()
 	m_light_rot_matrix.setRotationY(m_light_rot_y);
 
 	//45 degrees
-	m_light_rot_y += 1.57f * m_delta_time;
+	m_light_rot_y += 0.57f * m_delta_time;
 
 	//cc.m_world.setScale(Vector3D::lerp(Vector3D(0.5, 0.5, 0), Vector3D(1.0f, 1.0f, 0), (sin(m_delta_scale) + 1.0f) / 2.0f));
 	//temp.setTranslation(Vector3D::lerp(Vector3D(-1.5f, -1.5f, 0), Vector3D(1.5f, 1.5f, 0), m_delta_pos));
@@ -97,123 +97,36 @@ void AppWindow::onCreate()
 	m_play_state = true;
 	InputSystem::get()->showCursor(false);
 	
-	m_wall_tex = GraphicsEngine::get()->getTextureManager()->createTextureFromFile(L"Assets\\Textures\\wall.jpg");
-	/*
+	m_wall_tex = GraphicsEngine::get()->getTextureManager()->createTextureFromFile(L"Assets\\Textures\\zeusMat.png");
+	
 	 m_earthcolor_tex = GraphicsEngine::get()->getTextureManager()->createTextureFromFile(L"Assets\\Textures\\earth_color.jpg");	 
 	 m_clouds_tex = GraphicsEngine::get()->getTextureManager()->createTextureFromFile(L"Assets\\Textures\\clouds.jpg");
 	 m_earth_night_tex = GraphicsEngine::get()->getTextureManager()->createTextureFromFile(L"Assets\\Textures\\earth_night.jpg");
-	 m_earth_spec_tex = GraphicsEngine::get()->getTextureManager()->createTextureFromFile(L"Assets\\Textures\\earth_spec.jpg");
-	  */
+	 m_earth_spec_tex = GraphicsEngine::get()->getTextureManager()->createTextureFromFile(L"Assets\\Textures\\earth_spec.jpg"); 
+	 
 
-	 m_sky_tex = GraphicsEngine::get()->getTextureManager()->createTextureFromFile(L"Assets\\Textures\\sky.jpg");
+	 m_sky_tex = GraphicsEngine::get()->getTextureManager()->createTextureFromFile(L"Assets\\Textures\\stars_map.jpg");
 	 m_sky_mesh = GraphicsEngine::get()->getMeshManager()->createMeshFromFile(L"Assets\\Meshes\\sphere.obj");
 
-	 m_mesh = GraphicsEngine::get()->getMeshManager()->createMeshFromFile(L"Assets\\Meshes\\scene.obj");
+	 m_mesh = GraphicsEngine::get()->getMeshManager()->createMeshFromFile(L"Assets\\Meshes\\sphere_hq.obj");
 	 
 
 	RECT rc = this->getClientWindowRect();
 	m_swap_chain = GraphicsEngine::get()->getRenderSystem()->createSwapChain(this->m_hwnd, rc.right - rc.left, rc.bottom - rc.top);
 
 	m_world_cam.setTranslation(Vector3D(0, 0, -1));
-	
-	/*
-	Vector3D position_list[] =
-	{
-
-		{Vector3D(-0.5f,-0.5f,-0.5f)},
-		{Vector3D(-0.5f,0.5f,-0.5f)},
-		{Vector3D(0.5f,0.5f,-0.5f)},
-		{Vector3D(0.5f,-0.5f,-0.5f)},
-
-		{ Vector3D(0.5f,-0.5f,0.5f)},
-		{ Vector3D(0.5f,0.5f,0.5f)},
-		{ Vector3D(-0.5f,0.5f,0.5f)},
-		{ Vector3D(-0.5f,-0.5f,0.5f)}
-	};
-
-	Vector2D texcoord_list[] =
-	{
-
-		{ Vector2D(0.0f, 0.0f)},
-		{ Vector2D(0.0f, 1.0f)},
-		{ Vector2D(1.0f, 0.0f)},
-		{ Vector2D(1.0f, 1.0f)}
-	};
-
-
-	vertex vertex_list[] =
-	{
-		{position_list[0], texcoord_list[1]},
-		{position_list[1], texcoord_list[0]},
-		{position_list[2], texcoord_list[2]},
-		{position_list[3], texcoord_list[3]},
-
-		{position_list[4], texcoord_list[1]},
-		{position_list[5], texcoord_list[0]},
-		{position_list[6], texcoord_list[2]},
-		{position_list[7], texcoord_list[3]},
-
-		{position_list[1], texcoord_list[1]},
-		{position_list[6], texcoord_list[0]},
-		{position_list[5], texcoord_list[2]},
-		{position_list[2], texcoord_list[3]},
-
-		{position_list[7], texcoord_list[1]},
-		{position_list[0], texcoord_list[0]},
-		{position_list[3], texcoord_list[2]},
-		{position_list[4], texcoord_list[3]},
-
-		{position_list[3], texcoord_list[1]},
-		{position_list[2], texcoord_list[0]},
-		{position_list[5], texcoord_list[2]},
-		{position_list[4], texcoord_list[3]},
-
-		{position_list[7], texcoord_list[1]},
-		{position_list[6], texcoord_list[0]},
-		{position_list[1], texcoord_list[2]},
-		{position_list[0], texcoord_list[3]},
-	};
-
-	UINT size_list = ARRAYSIZE(vertex_list);
-
-
-	unsigned int index_list[] =
-	{
-		//FRONT SIDE
-		0,1,2,  //FIRST TRIANGLE
-		2,3,0,  //SECOND TRIANGLE
-		//BACK SIDE
-		4,5,6,
-		6,7,4,
-		//TOP SIDE
-		8,9,10,
-		10,11,8,
-		//BOTTOM SIDE
-		12,13,14,
-		14,15,12,
-		//RIGHT SIDE
-		16,17,18,
-		18,19,16,
-		//LEFT SIDE
-		20,21,22,
-		22,23,20
-	};
-
-	UINT size_index_list = ARRAYSIZE(index_list);
-	m_ib = GraphicsEngine::get()->getRenderSystem()->createIndexBuffer(index_list, size_index_list);
-	*/
 
 	void* shader_byte_code = nullptr;
 	size_t size_shader = 0;
 
-	GraphicsEngine::get()->getRenderSystem()->compileVertexShader(L"PointLightVertexShader.hlsl", "vsmain", &shader_byte_code, &size_shader);
+	GraphicsEngine::get()->getRenderSystem()->compileVertexShader(L"VertexShader.hlsl", "vsmain", &shader_byte_code, &size_shader);
 	m_vs = GraphicsEngine::get()->getRenderSystem()->createVertexShader(shader_byte_code, size_shader);
 	GraphicsEngine::get()->getRenderSystem()->releaseCompiledShader();
 	
 	//m_vb = GraphicsEngine::get()->getRenderSystem()->createVertexBuffer(vertex_list, sizeof(vertex), size_list, shader_byte_code, size_shader);
 
 
-	GraphicsEngine::get()->getRenderSystem()->compilePixelShader(L"PointLightPixelShader.hlsl", "psmain", &shader_byte_code, &size_shader);
+	GraphicsEngine::get()->getRenderSystem()->compilePixelShader(L"PixelShader.hlsl", "psmain", &shader_byte_code, &size_shader);
 	m_ps = GraphicsEngine::get()->getRenderSystem()->createPixelShader(shader_byte_code, size_shader);
 	GraphicsEngine::get()->getRenderSystem()->releaseCompiledShader();
 
@@ -246,8 +159,6 @@ void AppWindow::updateSkyBox()
 
 void AppWindow::render()
 {
-
-
 	//CLEAR THE RENDER TARGET 
 	GraphicsEngine::get()->getRenderSystem()->getImmediateDeviceContext()->clearRenderTargetColor(this->m_swap_chain,
 		0, 0.3f, 0.4f, 1);
@@ -260,22 +171,24 @@ void AppWindow::render()
 
 	//Render model
 	GraphicsEngine::get()->getRenderSystem()->setRasterizerState(false);
+	
+	//todo for single obj texture (like zeus)
+	//TexturePtr list_tex[1];
+	//list_tex[0] = m_wall_tex;
 
-	TexturePtr list_tex[1];
-	list_tex[0] = m_wall_tex;
-
-	/*
+	
 	//Sending multiple textures for earth model
+	
 	TexturePtr list_tex[4];
 	list_tex[0] = m_earthcolor_tex;
 	list_tex[1] = m_earth_spec_tex;
 	list_tex[2] = m_clouds_tex;
 	list_tex[3] = m_earth_night_tex;
-
+	
 	drawMesh(m_mesh, m_vs, m_ps, m_cb, list_tex, 4);
-	*/
+	
 
-	drawMesh(m_mesh, m_vs, m_ps, m_cb, list_tex, 1);
+	//drawMesh(m_mesh, m_vs, m_ps, m_cb, list_tex, 1);
 
 	//Render sphere Skybox worked for same pixel shader variable 
 	//result was 2 different texture wirt same variable as intended (like in the example above)
@@ -329,7 +242,7 @@ void AppWindow::updateCamera()
 	world_cam.inverse();
 
 	m_view_cam = world_cam;
-	/*
+	/* for orthogonal setup
 	cc.m_proj.setOrthoLH
 	(
 		(this->getClientWindowRect().right - this->getClientWindowRect().left) / 400.0f,
