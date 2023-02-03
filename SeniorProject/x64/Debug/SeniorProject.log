@@ -1,25 +1,25 @@
-﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(534,5): warning MSB8028: The intermediate directory (x64\Debug\) contains files shared from another project (DirectXProject.vcxproj, SeniorProject.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(534,5): warning MSB8028: The intermediate directory (x64\Debug\) contains files shared from another project (DirectXEngineProject.vcxproj, DirectXProject.vcxproj).  This can lead to incorrect clean and rebuild behavior.
   AppWindow.cpp
-E:\3DGameEngine-master\3DGameEngine-master\SeniorProject\Matrix4x4.h(104,44): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-E:\3DGameEngine-master\3DGameEngine-master\SeniorProject\Matrix4x4.h(105,44): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-E:\3DGameEngine-master\3DGameEngine-master\SeniorProject\Matrix4x4.h(106,44): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-E:\3DGameEngine-master\3DGameEngine-master\SeniorProject\Matrix4x4.h(107,44): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-E:\3DGameEngine-master\3DGameEngine-master\SeniorProject\AppWindow.cpp(344,67): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-E:\3DGameEngine-master\3DGameEngine-master\SeniorProject\AppWindow.cpp(344,52): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+E:\Repos\SeniorProject\SeniorProject\Matrix4x4.h(104,44): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\Repos\SeniorProject\SeniorProject\Matrix4x4.h(105,44): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\Repos\SeniorProject\SeniorProject\Matrix4x4.h(106,44): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\Repos\SeniorProject\SeniorProject\Matrix4x4.h(107,44): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\Repos\SeniorProject\SeniorProject\AppWindow.cpp(344,67): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+E:\Repos\SeniorProject\SeniorProject\AppWindow.cpp(344,52): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
   ConstantBuffer.cpp
   DeviceContext.cpp
-E:\3DGameEngine-master\3DGameEngine-master\SeniorProject\DeviceContext.cpp(28,19): warning C4244: '=': conversion from 'UINT' to 'FLOAT', possible loss of data
-E:\3DGameEngine-master\3DGameEngine-master\SeniorProject\DeviceContext.cpp(29,20): warning C4244: '=': conversion from 'UINT' to 'FLOAT', possible loss of data
+E:\Repos\SeniorProject\SeniorProject\DeviceContext.cpp(28,19): warning C4244: '=': conversion from 'UINT' to 'FLOAT', possible loss of data
+E:\Repos\SeniorProject\SeniorProject\DeviceContext.cpp(29,20): warning C4244: '=': conversion from 'UINT' to 'FLOAT', possible loss of data
   GraphicsEngine.cpp
   IndexBuffer.cpp
   InputSystem.cpp
   main.cpp
-E:\3DGameEngine-master\3DGameEngine-master\SeniorProject\Matrix4x4.h(104,44): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-E:\3DGameEngine-master\3DGameEngine-master\SeniorProject\Matrix4x4.h(105,44): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-E:\3DGameEngine-master\3DGameEngine-master\SeniorProject\Matrix4x4.h(106,44): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-E:\3DGameEngine-master\3DGameEngine-master\SeniorProject\Matrix4x4.h(107,44): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\Repos\SeniorProject\SeniorProject\Matrix4x4.h(104,44): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\Repos\SeniorProject\SeniorProject\Matrix4x4.h(105,44): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\Repos\SeniorProject\SeniorProject\Matrix4x4.h(106,44): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\Repos\SeniorProject\SeniorProject\Matrix4x4.h(107,44): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
   Mesh.cpp
-E:\3DGameEngine-master\3DGameEngine-master\SeniorProject\Mesh.cpp(24,105): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+E:\Repos\SeniorProject\SeniorProject\Mesh.cpp(24,105): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
   MeshManager.cpp
   PixelShader.cpp
   RenderSystem.cpp
@@ -27,14 +27,14 @@ E:\3DGameEngine-master\3DGameEngine-master\SeniorProject\Mesh.cpp(24,105): warni
   ResourceManager.cpp
   SwapChain.cpp
   Texture.cpp
-E:\3DGameEngine-master\3DGameEngine-master\SeniorProject\Texture.cpp(23,64): warning C4267: '=': conversion from 'size_t' to 'UINT', possible loss of data
-E:\3DGameEngine-master\3DGameEngine-master\SeniorProject\Texture.cpp(32,55): warning C4244: '=': conversion from 'UINT' to 'FLOAT', possible loss of data
+E:\Repos\SeniorProject\SeniorProject\Texture.cpp(23,64): warning C4267: '=': conversion from 'size_t' to 'UINT', possible loss of data
+E:\Repos\SeniorProject\SeniorProject\Texture.cpp(32,55): warning C4244: '=': conversion from 'UINT' to 'FLOAT', possible loss of data
   TextureManager.cpp
   Vector2D.cpp
   VertexBuffer.cpp
   VertexShader.cpp
   Window.cpp
   Generating Code...
-E:\3DGameEngine-master\3DGameEngine-master\SeniorProject\Window.cpp(55): warning C4715: 'WndProc': not all control paths return a value
-  LINK : E:\3DGameEngine-master\3DGameEngine-master\x64\Debug\DirectXEngineProject.exe not found or not built by the last incremental link; performing full link
-  SeniorProject.vcxproj -> E:\3DGameEngine-master\3DGameEngine-master\x64\Debug\DirectXEngineProject.exe
+E:\Repos\SeniorProject\SeniorProject\Window.cpp(55): warning C4715: 'WndProc': not all control paths return a value
+  LINK : E:\Repos\SeniorProject\x64\Debug\SeniorProject.exe not found or not built by the last incremental link; performing full link
+  SeniorProject.vcxproj -> E:\Repos\SeniorProject\x64\Debug\SeniorProject.exe
